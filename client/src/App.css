@@ -12,7 +12,7 @@ img{
 }
 
 main{
-  max-width: 600px;
+  max-width: 700px;
   margin: 0 auto;
   padding: 15px;
 }
@@ -20,6 +20,7 @@ header{
   display: flex;
   margin-bottom:50px;
   justify-content: space-between;
+  margin-top: 15px;
 }
 header a{
   text-decoration: none;
@@ -28,6 +29,7 @@ header a{
 header nav{
   display: flex;
   gap: 15px;
+  align-items: center;
 }
 header nav a{
   
@@ -35,10 +37,16 @@ header nav a{
 }
 header a.logo{
   font-weight: bold;
+  font-size: 1.5rem;
 }
+
 div.post{
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  
+  
   
 
 }
@@ -48,3 +56,22 @@ div.post{
 .post .texts{
   flex-basis: 50%;
 }
+.post .texts h2{
+  font-size: 1.2rem;
+  margin-bottom: 0;
+}
+.texts .info{
+  margin: 6px 0;
+  font-size: .7rem;
+  font-weight: bold;
+  display: flex;
+  gap: 5px;
+}
+.texts .info .author{
+  color: #333;
+}
+.texts .summary{
+  margin: 10px 0;
+
+}
+
