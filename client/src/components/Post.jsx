@@ -3,6 +3,7 @@ import React from 'react'
 const Post = () => {
   return (
     <>
+        
         <div className="post">
         <div className="images">
           <img
@@ -25,6 +26,7 @@ const Post = () => {
           </p>
         </div>
       </div>
+    
     </>
   )
 }
