@@ -1,7 +1,12 @@
 
+
+*{
+  box-sizing: border-box;
+}
 body{
   color: #333;
 }
+
 img{
   /* max-width: 100%; */
   object-fit: contain;
@@ -72,6 +77,50 @@ div.post{
 }
 .texts .summary{
   margin: 10px 0;
+
+}
+form.register,form.login{
+  width: 100%;
+  margin: 0 auto;
+  /*  */
+}
+input{
+  display: block;
+  margin-bottom:10px ;
+  width: 100%;
+  padding: 10px;
+ 
+  
+ 
+  border-radius: 7px;
+  /* text-align: center; */
+}
+button{
+  padding: 7px;
+  border-radius: 6px;
+  margin-top: 6px;
+  width: 100%;
+  background-color: #333;
+  color: white;
+}
+.container-box h1{
+  text-align: center;
+  
+
+}
+.container-box{
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  height: 400px;
+  gap: 2rem;
+  max-width: 500px;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin: 0 auto ;
+}
+.login-box{
+  border: 3px solid green;
 
 }
 
