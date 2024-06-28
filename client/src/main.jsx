@@ -10,6 +10,8 @@ import {
 
 
 import "./index.css";
+import Loginpage from "./pages/Loginpage";
+import Registerpage from "./pages/Registerpage";
 
 const router = createBrowserRouter([
   {
@@ -22,11 +24,11 @@ const router = createBrowserRouter([
       },
       {
         path:"/login",
-        element:<div>Login</div>
+        element:<Loginpage/>
       },
       {
         path:"/register",
-        element:<div>Registration</div>
+        element:<Registerpage/>
       }
     ]
   }
