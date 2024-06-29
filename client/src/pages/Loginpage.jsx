@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Loginpage = () => {
+
   return (
     <div>
       <div className="container-box">
         <h1>Login</h1>
        
-          <form className="login" action="">
+          <form className="login" onSubmit={()=>{}}>
             <input type="text" placeholder="Username" />
-            <input type="password" placeholder="Password" />
-            <button>Login</button>
+            <input type="password" placeholder="Password"/>
+            <button type="submit">Login</button>
           </form>
       
       </div>
