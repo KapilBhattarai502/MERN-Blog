@@ -2,7 +2,8 @@ import  mongoose  from "mongoose";
 
 const dbConnect=async()=>{
     try {
-        await mongoose.connect('mongodb+srv://kapilbhattarai502:dob205807@trainingdatabase.jyqv7zv.mongodb.net/');
+        await mongoose.connect('mongodb+srv://kapilbhattarai502:dob205807@cluster0.ssdqlio.mongodb.net/registerUser?retryWrites=true&w=majority&appName=Cluster0');
+        
         console.log("DB Connected Sucessfully")
         
     } catch (error) {
