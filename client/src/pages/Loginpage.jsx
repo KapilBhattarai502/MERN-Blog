@@ -1,13 +1,15 @@
 import React, { useState } from "react";
+import {Navigate} from 'react-router-dom';
 
 const Loginpage = () => {
   const [username,setUsername]=useState('');
   const [password,setPassword]=useState('');
+  const [redirect,setRedirect]=useState(false);
  
 
  const login =async(event)=>{
   event.preventDefault();
- try {
+ 
 
   const response=await fetch("http://localhost:8000/login",{
     method:'POST',
@@ -18,22 +20,23 @@ const Loginpage = () => {
 
   })
   if(response.status===200){
-    alert("Logged In Sucessfully");
+    setRedirect(true);
     
-  
 
-  }
+   
+  
+    }
   else{
     alert("You have entered a wrong password");
     
   }
 
-  
- } catch (error) {
-  console.log(error)
-  
- }
- }
+
+
+}
+if(redirect){
+  return <Navigate to={'/'}/>
+}
 
 
 
