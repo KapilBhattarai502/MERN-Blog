@@ -9,6 +9,7 @@ const App = () => {
       <Post />
       <Post />
       <Post />
+      <Post/>
     </>
   );
 };
