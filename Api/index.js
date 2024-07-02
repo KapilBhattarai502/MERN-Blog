@@ -53,6 +53,11 @@ app.get('/profile',(req,res)=>{
     })
 })
 
+app.post('/logout',(req,res)=>{
+    res.setHeader('Access-Control-Allow-Origin','http://localhost:5173');
+    res.cookie('token','').json('ok');
+
+})
 
 
 

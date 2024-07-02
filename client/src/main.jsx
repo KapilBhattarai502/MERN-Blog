@@ -11,9 +11,12 @@ import {
 
 import "./index.css";
 import Loginpage from "./pages/Loginpage";
+import { UserContextProvider } from "./UserContext";
 import Registerpage from "./pages/Registerpage";
 
+
 const router = createBrowserRouter([
+
   {
     path:"/",
     element:<Layout/>,
@@ -32,13 +35,15 @@ const router = createBrowserRouter([
       }
     ]
   }
-  
+ 
 ]);
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+  <UserContextProvider>
     <RouterProvider router={router} />
+    </UserContextProvider>
    {/* <App/> */}
   </React.StrictMode>
 );
