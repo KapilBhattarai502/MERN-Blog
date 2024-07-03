@@ -19,11 +19,14 @@ router.post("/login",async(req,res)=>{
     const passwordMatch=await bcrypt.compare(password,findUser.password);
     if(passwordMatch){
 
-        jwt.sign({username:findUser.username},privateKey,{},function(err,token){
+        jwt.sign({username,id:findUser._id},privateKey,{},function(err,token){
             if (err) throw err;
             // console.log(token)
             res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
-            res.cookie('token',token).json("ok");
+            res.cookie('token',token).json({
+                id:findUser._id,
+                username
+            });
             
         })
 

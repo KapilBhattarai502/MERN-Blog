@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import Layout from "./components/Layout";
+import CreatePost from "./pages/CreatePost";
 
 import App from "./App"
 import {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path:"/register",
         element:<Registerpage/>
+      },
+      {
+        path:"/create",
+        element:<CreatePost/>
       }
     ]
   }

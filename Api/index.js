@@ -46,9 +46,17 @@ app.listen(port,()=>{
 
 app.get('/profile',(req,res)=>{
     res.setHeader('Access-Control-Allow-Origin','http://localhost:5173');
+   
     const {token}=req.cookies;
+    if (!token) {
+        return res.status(401).json({ message: 'No token provided' });
+      }
     jwt.verify(token,privateKey,{},(err,info)=>{
-        if (err) throw err;
+        if (err){
+            console.error('JWT verification failed:', err);
+            return res.status(401).json({ message: 'Failed to verify token' });
+ 
+        }
         res.json(info);
     })
 })
