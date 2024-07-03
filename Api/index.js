@@ -4,6 +4,10 @@ import cors from 'cors'
 import dbConnect from './mongodb/dbConnect.js';
 import loginRoute from "./loginApi.js";
 import jwt from "jsonwebtoken";
+import multer from 'multer';
+import fs from 'fs';
+const uploadMiddleware=multer({dest:'./uploads'});
+
 
 import cookieParser from 'cookie-parser';
 const privateKey="DADLDJ2934902";
@@ -61,9 +65,29 @@ app.get('/profile',(req,res)=>{
     })
 })
 
+
+
 app.post('/logout',(req,res)=>{
     res.setHeader('Access-Control-Allow-Origin','http://localhost:5173');
     res.cookie('token','').json('ok');
+
+})
+
+app.post('/post',uploadMiddleware.single("file"),(req,res)=>{
+
+    
+    if (!req.file) {
+        return res.status(400).json({ message: 'File upload failed' });
+    }
+    const {originalname,path}=req.file;
+    const parts=originalname.split('.');
+    const ext=parts[parts.length - 1];
+    const newpath=path+'.'+ext;
+    fs.renameSync(path,newpath);
+    
+    res.json(req.file);
+
+
 
 })
 
