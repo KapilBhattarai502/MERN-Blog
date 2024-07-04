@@ -6,7 +6,14 @@ import loginRoute from "./loginApi.js";
 import jwt from "jsonwebtoken";
 import multer from 'multer';
 import fs from 'fs';
+import Post from './mongodb/Post.js';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const uploadMiddleware=multer({dest:'./uploads'});
+
 
 
 import cookieParser from 'cookie-parser';
@@ -33,6 +40,10 @@ app.use(cors(
 
 app.use(registerRoute);
 app.use(loginRoute);
+
+app.use('/uploads',express.static(__dirname + '/uploads'))
+
+
 
 
 dbConnect();
@@ -73,7 +84,8 @@ app.post('/logout',(req,res)=>{
 
 })
 
-app.post('/post',uploadMiddleware.single("file"),(req,res)=>{
+app.post('/post',uploadMiddleware.single("file"),async(req,res)=>{
+    res.setHeader('Access-Control-Allow-Origin','http://localhost:5173');
 
     
     if (!req.file) {
@@ -84,11 +96,40 @@ app.post('/post',uploadMiddleware.single("file"),(req,res)=>{
     const ext=parts[parts.length - 1];
     const newpath=path+'.'+ext;
     fs.renameSync(path,newpath);
+
+    const{title,summary,content}=req.body;
+
+    const {token}=req.cookies;
+
+    jwt.verify(token,privateKey,{},async(err,info)=>{
+        if (err){
+            console.error('JWT verification failed:', err);
+            return res.status(401).json({ message: 'Failed to verify token' });
+ 
+        }
+        const postDoc=await Post.create({
+            title,
+            summary,
+            content,
+            cover:newpath,
+            author:info.id,
+       })
+        res.json(postDoc);
+    })
     
-    res.json(req.file);
+
+    
+    
+    
 
 
 
+
+})
+app.get('/post',async(req,res)=>{
+    const posts=(await Post.find().populate('author',['username'])
+    .sort({createdAt:-1}).limit(20));
+    res.json(posts);
 })
 
 
